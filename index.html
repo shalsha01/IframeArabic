@@ -1,0 +1,646 @@
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+<script src="https://learner.ta3leem.iq/asset-v1:Ta3leem+1+2022_2023+type@asset+block@lottifiles.js"></script>
+
+<style>
+    body {
+        width: 100%;
+        padding: 0;
+        margin: 0;
+        box-sizing: border-box;
+    }
+
+    .img {
+        width: 100%;
+        object-fit: contain;
+    }
+
+    .img_bg_container {
+        width: 100%;
+        height: fit-content;
+        position: relative;
+        display: flex;
+        flex-wrap: wrap;
+        margin: auto;
+    }
+
+    .img_bg_container * {
+        z-index: 10;
+        margin: 0;
+        padding: 0;
+        user-select: none;
+    }
+
+    .voice_box {
+        position: absolute;
+        width: 120px;
+      border: 2px solid black;
+        height: 30px;
+    }
+
+    @media (min-width:1024px) {
+        .img_bg_container {
+            width: 50%;
+        }
+    }
+</style>
+
+
+
+<audio preload="none" id="lose"
+    src="https://learner.ta3leem.iq/asset-v1:Ta3leem+1+2022_2023+type@asset+block@lose_sound.mp3"></audio>
+<audio preload="none" id="win"
+    src="https://learner.ta3leem.iq/asset-v1:Ta3leem+1+2022_2023+type@asset+block@win_sound.wav"></audio>
+
+
+
+
+<section dir="rtl" class="img_bg_container" onmousemove="move(event)" ontouchmove="move(event)" onmouseup="drop(event)"
+    ontouchend="drop(event)">
+
+
+    <img class="img"
+        src="https://learner.ta3leem.iq/asset-v1:Ta3leem+1+2022_2023+type@asset+block@كتاب_قواعد_رابع_ابتدائي-20.png">
+
+
+    <!-- first section -->
+    <div class="voice_box drag_resize" data-answer="الإنسان" id="quiz-selector" onclick="replayAudio('L79')"
+        style="cursor: s-resize; left: 65.086%; top: 22.8903%; height: 2.61239%; width: 10.9252%; border-style: hidden;">
+    </div>
+
+    <div class="voice_box drag_resize" data-answer="الشعب" id="quiz-selector" onclick="replayAudio('L79')"
+        style="cursor: nw-resize; left: 62.7615%; top: 26.8099%; height: 2.77898%; width: 10.9252%; border-style: hidden;">
+    </div>
+
+    <div class="voice_box drag_resize" data-answer="الإسلام" id="quiz-selector" onclick="replayAudio('L79')"
+        style="cursor: move; left: 70.8973%; top: 30.5726%; width: 10.222%; height: 2.77898%; border-style: hidden;">
+    </div>
+
+    <div class="voice_box drag_resize" data-answer="العراق" id="quiz-selector" onclick="replayAudio('L79')"
+        style="cursor: n-resize; left: 70.8973%; top: 34.3354%; width: 10.6869%; height: 2.44777%; border-style: hidden;">
+    </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <!-- second section drag drop -->
+    <div class="voice_box drag_resize" data-answer="تلتقط" id="drop-section" onclick="replayAudio('L79')"
+        style="cursor: n-resize; left: 58.8099%; top: 53.7765%; width: 12.5494%; height: 2.61239%; border-style: hidden;">
+    </div>
+
+    <div class="voice_box drag_resize" data-answer="ترقد" id="drop-section" onclick="replayAudio('L79')"
+        style="cursor: s-resize; left: 67.8754%; top: 57.6961%; height: 2.77898%; width: 12.5494%; border-style: hidden;">
+
+    </div>
+
+    <div class="voice_box drag_resize" data-answer="يفقس" id="drop-section" onclick="replayAudio('L79')"
+        style="cursor: s-resize; left: 68.5728%; top: 61.6156%; height: 2.77898%; width: 12.5494%; border-style: hidden;">
+    </div>
+
+    <div class="voice_box drag_resize" data-answer="ينفع" id="drop-section" onclick="replayAudio('L79')"
+        style="cursor: move; left: 56.0205%; top: 66.1623%; height: 2.61239%; width: 13.0143%; border-style: hidden;">
+    </div>
+
+
+
+    <!-- drop area -->
+    <div class="voice_box drag_resize drag-area" data-value="تلتقط" onclick="replayAudio('L79')"
+        style="cursor: s-resize; left: 18.1311%; top: 53.7765%; width: 16.0391%; height: 2.97887%;z-index: 15;">
+
+        <div id="1">
+            <h1 onmousedown="pickup(event)" ontouchstart="pickup(event)" id="draggble" data-value="تشرب" data-def="1">
+                تشرب</h1>
+        </div>
+
+        <div id="2">
+            <h1 onmousedown="pickup(event)" ontouchstart="pickup(event)" id="draggble" data-value="تلتقط" data-def="2">
+                تلتقط</h1>
+        </div>
+
+    </div>
+
+    <div class="voice_box drag_resize drag-area" id="tow" onclick="replayAudio('L79')"
+        style="cursor: move; left: 19.5258%; top: 57.2257%; width: 14.4119%; height: 3.606%;z-index: 15;" data-value="ترقد">
+
+        <div id="3">
+            <h1 onmousedown="pickup(event)" ontouchstart="pickup(event)" id="draggble" data-value="ترقد" data-def="3">
+                ترقد</h1>
+        </div>
+
+        <div id="4">
+            <h1 onmousedown="pickup(event)" ontouchstart="pickup(event)" id="draggble" data-value="تدوس" data-def="4">
+                تدوس</h1>
+        </div>
+
+    </div>
+
+    <div class="voice_box drag_resize drag-area" id="three" onclick="replayAudio('L79')"
+        style="cursor: s-resize; width: 16.0391%; left: 18.3636%; top: 61.6156%; height: 2.97887%; z-index: 15;" data-value="يفقس">
+
+        <div id="5">
+            <h1 onmousedown="pickup(event)" ontouchstart="pickup(event)" id="draggble" data-value="يذوب" data-def="5">
+                يذوب</h1>
+        </div>
+
+        <div id="6">
+            <h1 onmousedown="pickup(event)" ontouchstart="pickup(event)" id="draggble" data-value="يفقس" data-def="6">
+                يفقس</h1>
+        </div>
+
+    </div>
+
+    <div class="voice_box drag_resize drag-area" id="four" onclick="replayAudio('L79')"
+        style="cursor: s-resize; width: 13.0391%; left: 20.6036%; top: 65.6156%; height: 2.97887%; z-index: 15;" data-value="يضر">
+        <div id="7">
+            <h1 onmousedown="pickup(event)" ontouchstart="pickup(event)" id="draggble" data-value="يضر" data-def="7">
+                يضر</h1>
+        </div>
+
+        <div id="8">
+            <h1 onmousedown="pickup(event)" ontouchstart="pickup(event)" id="draggble" data-value="ينفع" data-def="8">
+                ينفع</h1>
+        </div>
+
+    </div>
+
+
+    <!-- game explain -->
+    <div class="voice_box drag_resize" id="game-explain-window" onclick="stopAnimation()"
+        style="cursor: n-resize; left: 29.2669%; top: 53.4629%; height: 3.44922%; width: 36.49%;">
+        <img id="cruser" class="leftRigth"
+            src="https://learner.ta3leem.iq/asset-v1:Ta3leem+1+2022_2023+type@asset+block@tap.png" />
+    </div>
+    <!-- second section drag drop end -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <!-- third section -->
+
+    <div class="voice_box drag_resize" data-answer="في" id="quiz-selector-three" onclick="replayAudio('L79')"
+        style="cursor: sw-resize; left: 62.2966%; top: 83.8788%; width: 10.2249%; height: 2.75938%; border-style: hidden;">
+    </div>
+
+    <div class="voice_box drag_resize" data-answer="إلى" id="quiz-selector-three" onclick="replayAudio('L79')"
+        style="cursor: s-resize; height: 3.22973%; left: 30.9159%; top: 83.8788%; width: 10.6898%; border-style: hidden;">
+    </div>
+
+    <div class="voice_box drag_resize" data-answer="على" id="quiz-selector-three" onclick="replayAudio('L79')"
+        style="cursor: move; left: -1.16225%; top: 84.0356%; width: 12.3199%; height: 3.22973%; border-style: hidden;">
+    </div>
+
+    <div class="voice_box drag_resize" data-answer="في" id="quiz-selector-three" onclick="replayAudio('L79')"
+        style="cursor: n-resize; left: 48.5821%; top: 87.7984%; width: 9.75709%; height: 2.9142%; border-style: hidden;">
+    </div>
+
+    <div class="voice_box drag_resize" data-answer="إلى" id="quiz-selector-three" onclick="replayAudio('L79')"
+        style="cursor: s-resize; left: 12.5523%; top: 87.328%; height: 3.22973%; width: 10.6898%; border-style: hidden;">
+    </div>
+
+    <div class="voice_box drag_resize" data-answer="إلى" id="quiz-selector-three" onclick="replayAudio('L79')"
+        style="cursor: move; left: 48.5821%; top: 91.8747%; width: 8.59774%; height: 2.75938%; border-style: hidden;">
+    </div>
+
+
+
+                <div class="voice_box drag_resize " id="moving" onclick="highlightTest('L1',this)"  style="top: 1.67233%; height: 5.48733%; cursor: move; left: 30.5798%; overflow: hidden; width: 27.9067%;">1</div>
+                <div class="voice_box drag_resize " id="moving" onclick="highlightTest('L2',this)" style="top: 13.1928%; height: 4.70342%; cursor: sw-resize; left: 73.2814%; width: 16.2757%; overflow: hidden;">2</div>
+                <div class="voice_box drag_resize " id="moving" onclick="highlightTest('L3',this)" style="top: 13.1928%; height: 4.8602%; cursor: n-resize; left: 29.2024%; width: 42.7877%; overflow: hidden;">3</div>
+                <div class="voice_box drag_resize " id="moving" onclick="highlightTest('L4',this)" style="top: 42.3656%; height: 9.40975%; cursor: move; left: 5.23438%; width: 67.2076%; overflow: hidden;">4</div>
+                <div class="voice_box drag_resize " id="moving" onclick="highlightTest('L5',this)" style="top: 72.8392%; height: 6.27413%; cursor: e-resize; left: 10.4688%; width: 61.6246%; overflow: hidden;">5</div>
+                <div class="voice_box drag_resize " id="moving" onclick="highlightTest('L6',this)" style="top: 22.8552%; height: 2.97883%; cursor: n-resize; left: 52.0684%; width: 33.9503%; overflow: hidden;">6</div>
+                <div class="voice_box drag_resize " id="moving" onclick="highlightTest('L7',this)" style="top: 26.5714%; height: 3.2924%; cursor: n-resize; left: 45.4565%; width: 41.1605%; overflow: hidden;">7</div> 
+                <div class="voice_box drag_resize " id="moving" onclick="highlightTest('L8',this)" style="top: 30.6594%; height: 2.82205%; cursor: move; left: 44.63%; width: 41.393%; overflow: hidden;">8</div>
+                <div class="voice_box drag_resize " id="moving" onclick="highlightTest('L9',this)" style="top: 34.5614%; height: 4.23308%; cursor: w-resize; left: 44.079%; width: 43.485%; overflow: hidden;">9</div>
+                <div class="voice_box drag_resize " id="moving" onclick="highlightTest('L10',this)" style="top: 52.9571%; height: 3.91952%; cursor: move; left: 49.8644%; width: 38.6036%; overflow: hidden;">10</div>
+                <div class="voice_box drag_resize " id="moving" onclick="highlightTest('L11',this)" style="top: 53.4066%;height: 3.0763%;cursor: w-resize;left: 16.8644%;width: 18.4413%;overflow: hidden;">11</div>
+                <div class="voice_box drag_resize " id="moving" onclick="highlightTest('L12',this)" style="top: 57.8761%; height: 3.13562%; cursor: move; left: 47.9359%; width: 40.2307%; overflow: hidden;"></div>
+                <div class="voice_box drag_resize " id="moving" onclick="highlightTest('L13',this)" style="top: 57.4066%;height: 3.0763%;cursor: w-resize;left: 16.8644%;width: 18.4413%;overflow: hidden;"></div>
+                <div class="voice_box drag_resize " id="moving" onclick="highlightTest('L14',this)" style="top: 83.4306%; height: 12.2318%; cursor: move; left: -1.37747%; width: 90.9302%;"></div>
+ 
+               </section>
+
+               
+    <audio id="L1" src="https:learner.ta3leem.iq/asset-v1:Ta3leem+1+2022_2023+type@asset+block@arpg20__1_.mp3"></audio>
+    <audio id="L2" src="https:learner.ta3leem.iq/asset-v1:Ta3leem+1+2022_2023+type@asset+block@arpg20__2_.mp3"></audio>
+    <audio id="L3" src="https:learner.ta3leem.iq/asset-v1:Ta3leem+1+2022_2023+type@asset+block@arpg20__3_.mp3"></audio>
+    <audio id="L4" src="https:learner.ta3leem.iq/asset-v1:Ta3leem+1+2022_2023+type@asset+block@arpg20__4_.mp3"></audio>
+    <audio id="L5" src="https:learner.ta3leem.iq/asset-v1:Ta3leem+1+2022_2023+type@asset+block@arpg20__5_.mp3"></audio>
+    <audio id="L6" src="https:learner.ta3leem.iq/asset-v1:Ta3leem+1+2022_2023+type@asset+block@arpg20__6_.mp3"></audio>
+    <audio id="L7" src="https:learner.ta3leem.iq/asset-v1:Ta3leem+1+2022_2023+type@asset+block@arpg20__7_.mp3"></audio>
+    <audio id="L8" src="https:learner.ta3leem.iq/asset-v1:Ta3leem+1+2022_2023+type@asset+block@arpg20__8_.mp3"></audio>
+    <audio id="L9" src="https:learner.ta3leem.iq/asset-v1:Ta3leem+1+2022_2023+type@asset+block@arpg20__9_.mp3"></audio>
+    <audio id="L10" src="https:learner.ta3leem.iq/asset-v1:Ta3leem+1+2022_2023+type@asset+block@arpg20__10_.mp3"></audio>
+    <audio id="L11" src="https:learner.ta3leem.iq/asset-v1:Ta3leem+1+2022_2023+type@asset+block@arpg20__11_.mp3"></audio>
+    <audio id="L12" src="https:learner.ta3leem.iq/asset-v1:Ta3leem+1+2022_2023+type@asset+block@arpg20__12_.mp3"></audio>
+    <audio id="L13" src="https:learner.ta3leem.iq/asset-v1:Ta3leem+1+2022_2023+type@asset+block@arpg20__13_.mp3"></audio>
+    <audio id="L14" src="https:learner.ta3leem.iq/asset-v1:Ta3leem+1+2022_2023+type@asset+block@arpg20__14_.mp3"></audio>
+    <audio id="L15" src="https:learner.ta3leem.iq/asset-v1:Ta3leem+1+2022_2023+type@asset+block@arpg20__15_.mp3"></audio>
+    <audio id="L16" src="https:learner.ta3leem.iq/asset-v1:Ta3leem+1+2022_2023+type@asset+block@arpg20__16_.mp3"></audio>
+    <audio id="L17" src="https:learner.ta3leem.iq/asset-v1:Ta3leem+1+2022_2023+type@asset+block@arpg20__17_.mp3"></audio>
+    <audio id="L18" src="https:learner.ta3leem.iq/asset-v1:Ta3leem+1+2022_2023+type@asset+block@arpg20__18_.mp3"></audio>
+
+
+
+<!-- quiz selector game js -->
+<script>
+
+    const quizSelectors = document.querySelectorAll("#quiz-selector")
+    const quizSelectorsThree = document.querySelectorAll("#quiz-selector-three")
+
+
+
+
+    quizSelectors.forEach((e) => {
+        e.innerHTML =
+            `
+        <select id="options" onchange="changeQuizSelector(this)">
+            <option value="">اضغط هنا</option>
+            <option value="الإسلام">الإسلام</option>
+            <option value="العراق">العراق</option>
+            <option value="الشعب">الشعب</option>
+            <option value="الإنسان">الإنسان</option>
+        </select>
+        `
+    })
+
+
+
+    quizSelectorsThree.forEach((e) => {
+        e.innerHTML =
+            `
+     <select id="options" onchange="changeQuizSelector(this)">
+        <option value="">اضغط هنا</option>
+        <option value="إلى">إلى</option>
+        <option value="على">على</option>
+        <option value="في">في</option>
+    </select>
+        `
+    })
+
+
+    function changeQuizSelector(e) {
+        if (e.value === e.parentElement.dataset.answer) {
+            e.style.color = "green"
+            replayAudio("win")
+
+        } else {
+            e.style.color = "red"
+            replayAudio("lose")
+
+        }
+    }
+
+</script>
+
+
+<!-- drag drop js -->
+<script>
+    let moving = null;
+    let html = document.documentElement
+    let allTags = html.getElementsByTagName("*")
+
+
+    document.addEventListener("touchmove", function (event) {
+        event.preventDefault();
+    })
+
+    function drop(event) {
+        if (moving) {
+
+            /* for mouse pointer */
+            let target = null;
+
+            if (event.clientX) {
+                target = document.elementFromPoint(event.clientX, event.clientY);
+                if (target.id === "drop-section") {
+                    if (target.dataset.answer !== moving.dataset.value) {
+                        moving.style.display = "none"
+                        replayAudio("lose")
+                        return;
+
+
+                    } else {
+                        moving.style.color = "rgb(0, 208, 255)"
+                        replayAudio("win")
+                        target.appendChild(moving)
+                    }
+                    moving.style.opacity = "1"
+                    moving.style.position = 'static';
+                    moving.style.zIndex = '';
+                    moving.style.transform = ''
+                 } 
+                 else {
+                    document.getElementById(moving.dataset.def).prepend(moving)
+                    moving.style.opacity = "0"
+                    moving.style.position = 'static';
+                    moving.style.zIndex = '';
+                    moving.style.transform = ''
+                }
+
+            } else {
+                target = document.elementFromPoint(event.changedTouches[0].clientX, event.changedTouches[0].clientY);
+                if (target.id === "drop-section") {
+                    
+                    if (target.dataset.answer !== moving.dataset.value) {
+                        moving.style.display='none'
+                        replayAudio("lose")
+                        // return;
+                        
+                    } else {
+                        moving.style.color = "rgb(0, 208, 255)"
+                        replayAudio("win")
+                        target.appendChild(moving)
+                    }
+                   
+                    moving.style.opacity = "1"
+                    moving.style.position = 'static';
+                    moving.style.zIndex = '';
+                    moving.style.transform = ''
+                    
+                } else {
+                    document.getElementById(moving.dataset.def).prepend(moving)
+                    moving.style.opacity = "0"
+                    moving.style.position = 'static';
+                    moving.style.zIndex = '';
+                    moving.style.transform = ''
+                }
+            }
+
+            moving = null;
+            // for (e of allTags) { e.style.overflow = "scroll" }
+        }
+    }
+
+
+
+    function pickup(event, id) {
+        moving = event.target;
+        moving.style.position = 'fixed';
+        moving.style.zIndex = '8';
+        moving.style.opacity = '1';moving.style.BoxShadow='box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;'
+
+        for (e of allTags) { e.style.overflow = "hidden" }
+        document.getElementById("game-explain-window").style.display = "none"
+    }
+
+
+    function move(event) {
+        event.preventDefault()
+        if (moving) {
+
+            if (event.clientX) {
+                //Get the current mouse position.
+                var mouseX = event.clientX;
+                var mouseY = event.clientY;
+
+                // Calculate the new translation value.
+                var translationX = mouseX - moving.offsetLeft;
+                var translationY = mouseY - moving.offsetTop;
+
+                // Set the new translation value.
+                moving.style.transform = "translate(" + translationX + "px, " + translationY + "px)";
+            } else {
+
+                //Get the current touch position.
+                var touchX = event.changedTouches[0].clientX;
+                var touchY = event.changedTouches[0].clientY;
+
+                // Calculate the new translation value.
+                var translationX = touchX - moving.offsetLeft;
+                var translationY = touchY - moving.offsetTop;
+
+                // Set the new translation value.
+                moving.style.transform = "translate(" + translationX + "px, " + translationY + "px)";
+            }
+        }
+    }
+</script>
+<script>
+  
+  
+  
+// Reading The Texts 
+function   highlightTest(id,ele) {
+    closeDiv()
+        let audio = document.getElementById(id)
+        replayAudio(id)
+        ele.style.backgroundColor='rgb(255,255,160)'
+        ele.style.opacity='0.4'
+        setTimeout(function(){
+                    closeDiv()
+
+                },audio.duration*1000
+
+                )
+            }
+            function closeDiv() {
+        let allDives = document.querySelectorAll('#moving')
+        allDives.forEach((ele ) => {
+            ele.style.border = 'none';
+            ele.style.backgroundColor='transparent'
+            ele.style.opacity='1'
+        })
+    }
+
+
+  
+  
+    function stopAnimation() {
+        document.getElementById("game-explain-window").style.display = "none"
+
+    }
+</script>
+
+
+<!-- quiz selector game css -->
+<style>
+    #quiz-selector,
+    #quiz-selector-three {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background: none;
+        border: none;
+    }
+
+
+
+    #options {
+        font-size: 0.5rem;
+        font-weight: 800;
+        -moz-appearance: none;
+        /* Firefox */
+        -webkit-appearance: none;
+        /* Safari and Chrome */
+        appearance: none;
+        border: none;
+        padding: 3px;
+        color: green;
+        text-align: center;
+        background: none;
+    }
+
+    #draggble {
+        font-size: 0.7rem;
+        font-weight: 800;
+        color: rgb(0, 208, 255);
+        text-align: center;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        opacity: 0;
+    }
+
+    .drag-area {
+        background: none;
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        border: none;
+
+    }
+
+    #drop-section {
+        z-index: 1000;
+    }
+
+    #cruser {
+        width: 20px;
+        bottom: -10px;
+        z-index: 20;
+    }
+
+    .leftRigth {
+        position: absolute;
+        animation: linear infinite;
+        animation-name: run;
+        animation-duration: 3s;
+    }
+
+
+    @media (min-width:768px) {
+
+        #options,
+        #draggble {
+            font-size: 1rem;
+        }
+
+        #cruser {
+            width: 30px;
+        }
+    }
+
+    @media (min-width:1024px) {
+
+        #options,
+        #draggble {
+            font-size: 0.8rem;
+        }
+
+        #cruser {
+            width: 25px;
+        }
+    }
+
+    @media (min-width:1300px) {
+
+        #options,
+        #draggble {
+            font-size: 0.9rem;
+        }
+
+        #cruser {
+            width: 30px;
+        }
+    }
+
+    @media (min-width:1920px) {
+
+        #options,
+        #draggble {
+            font-size: 1.7rem;
+        }
+    }
+
+
+
+    @keyframes run {
+        0% {
+            left: 0;
+        }
+
+        20% {
+            left: 20%;
+        }
+
+        50% {
+            left: 100%;
+        }
+
+        90% {
+            left: 90%;
+        }
+
+        100% {
+            left: 0;
+        }
+    }
+</style>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js"
+    integrity="sha384-fbbOQedDUMZZ5KreZpsbe1LCZPVmfTnH7ois6mU1QK+m14rQ1l2bGBq41eYeM/fS"
+    crossorigin="anonymous"></script>
+
+
+<!-- vioce scripts -->
+<script>
+    function replayAudio(id) {
+        // Replay the selected audio
+        var selectedAudio = document.getElementById(id);
+        if (selectedAudio !== null) {
+            selectedAudio.currentTime = 0;
+            selectedAudio.play();
+        }
+    }
+
+</script>
+
+<script src="https://unpkg.com/@lottiefiles/lottie-player@0.4.0/dist/tgs-player.js"></script>
+<script src="https://unpkg.com/@lottiefiles/lottie-player@1.5.7/dist/lottie-player.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
+    integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
+    crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js"
+    integrity="sha384-fbbOQedDUMZZ5KreZpsbe1LCZPVmfTnH7ois6mU1QK+m14rQ1l2bGBq41eYeM/fS"
+    crossorigin="anonymous"></script>
